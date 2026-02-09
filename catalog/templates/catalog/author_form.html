@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>افزودن نویسنده</title>
+    <style>
+        body {
+            font-family: Tahoma, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            border: 1px solid #eee;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>افزودن نویسنده جدید</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">ذخیره نویسنده</button>
+    </form>
+
+    <a href="{% url 'home' %}" class="back-link">
+        ← بازگشت به صفحه اصلی
+    </a>
+</div>
+
+</body>
+</html>

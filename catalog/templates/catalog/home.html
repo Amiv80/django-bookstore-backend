@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>کتاب‌فروشی | لیست کتاب‌ها</title>
+    <style>
+        body { font-family: Tahoma, sans-serif; line-height: 1.6; margin: 20px; }
+        .book-item { margin-bottom: 15px; padding: 10px; border-bottom: 1px solid #ddd; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; margin-top: 20px;">به کتاب‌فروشی ما خوش آمدید</h1>
+
+    {% if request.user.is_staff %}
+        <p>
+            <a href="{% url 'book-add' %}">➕ افزودن کتاب جدید</a>
+            |
+            <a href="{% url 'author-add' %}">✍️ افزودن نویسنده جدید</a>
+        </p>
+    {% endif %}
+
+
+    {% if books %}
+        <h2>لیست کتاب‌های موجود:</h2>
+        <ul>
+        {% for book in books %}
+            <li class="book-item">
+                <a href="{% url 'book-detail' pk=book.pk %}">
+                    <strong>{{ book.title }}</strong>
+                </a> 
+                <br>
+                <span>نویسنده: {{ book.author.first_name }} {{ book.author.last_name }}</span> | 
+                <span>قیمت: {{ book.price }} تومان</span>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>متأسفانه در حال حاضر هیچ کتابی برای نمایش موجود نیست.</p>
+    {% endif %}
+
+</body>
+</html>

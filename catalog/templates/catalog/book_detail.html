@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ book.title }} | جزئیات کتاب</title>
+    <style>
+        body { font-family: Tahoma, sans-serif; line-height: 1.6; margin: 40px; }
+        .container { max-width: 800px; margin: auto; border: 1px solid #eee; padding: 20px; border-radius: 8px; }
+        .back-link { display: inline-block; margin-top: 20px; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>{{ book.title }}</h1>
+        <hr>
+        
+        <p><strong>نویسنده:</strong> {{ book.author.first_name }} {{ book.author.last_name }}</p>
+        <p><strong>قیمت:</strong> {{ book.price }} تومان</p>
+        <p><strong>تاریخ انتشار:</strong> {{ book.publication_date }}</p>
+        
+        <h3>خلاصه کتاب:</h3>
+        <p>{{ book.summary|linebreaks }}</p>
+
+        <a href="{% url 'home' %}" class="back-link">← بازگشت به لیست کتاب‌ها</a>
+    </div>
+</body>
+</html>
