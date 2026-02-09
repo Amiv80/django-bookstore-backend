@@ -8,13 +8,13 @@ class BookForm(forms.ModelForm):
         model = Book
         fields = ["title", "author", "price", "publication_date", "summary"]
 
-        def clean_price(self):
-            price = self.cleaned_data.get("price")
-            if price is not None and price <= 0:
-                raise forms.ValidationError(
-                    "قیمت نمی‌تواند خالی باشد. همجنین باید بزرگتر از صفر باشد"
-                )
-            return price
+    def clean_price(self):
+        price = self.cleaned_data.get("price")
+        if price is not None and price <= 0:
+            raise forms.ValidationError(
+                "قیمت نمی‌تواند خالی باشد. همچنین باید بزرگتر از صفر باشد"
+            )
+        return price
 
     def clean(self):
         cleaned_data = super().clean()
